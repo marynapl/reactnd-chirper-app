@@ -6,16 +6,23 @@ import { TiHeartOutline } from 'react-icons/ti/index'
 import { TiHeartFullOutline } from 'react-icons/ti/index'
 
 class Tweet extends Component {
-
+  handleLike = (e) => {
+    e.preventDefault()
+    // TODO
+  }
+  toParent = (e, id) => {
+    e.preventDefault()
+    // TODO
+  }
   render() {
     const { tweet } = this.props
 
-    if(tweet === null){
+    if (tweet === null) {
       return <p>This tweet doesn't exist</p>
     }
 
-    const { 
-      name, avatar, timestamp, text, hasLiked, likes, replies, id, parent 
+    const {
+      name, avatar, timestamp, text, hasLiked, likes, replies, id, parent
     } = tweet
 
     return (
@@ -30,7 +37,8 @@ class Tweet extends Component {
             <span>{name}</span>
             <div>{formatDate(timestamp)}</div>
             {parent && (
-              <button className='replying-to' onClick={(e) => this.toParent(e, parent.id)}>
+              <button className='replying-to'
+                onClick={(e) => this.toParent(e, parent.id)}>
                 Replying to @{parent.author}
               </button>
             )}
@@ -42,7 +50,7 @@ class Tweet extends Component {
             <button className='heart-button' onClick={this.handleLike}>
               {hasLiked === true
                 ? <TiHeartFullOutline color='#e0245e' className='tweet-icon' />
-                : <TiHeartOutline className='tweet-icon'/>}
+                : <TiHeartOutline className='tweet-icon' />}
             </button>
             <span>{likes !== 0 && likes}</span>
           </div>
